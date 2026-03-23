@@ -1,0 +1,96 @@
+:root {
+    --header-height: 140px; /* điều chỉnh theo đúng chiều cao header */
+}
+
+/* Reset giống Home */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Container giống Home */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+/* ===== Hero Section (Contact) ===== */
+.hero-contact {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #15407a 0%, #2f69ad 55%, #4a7f52 100%);
+    color: white;
+    padding: 120px 20px 0px;
+    text-align: center;
+}
+
+.hero-contact h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-contact p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ===== Contact Section ===== */
+.section {
+    padding: 65px 20px;
+}
+
+.section h3 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #0E2A5B;
+    margin-bottom: 20px;
+}
+
+.section p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #333;
+}
+
+/* ===== Map ===== */
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== Social Media ===== */
+.section .d-flex a {
+    transition: all 0.3s ease;
+}
+
+.section .d-flex a:hover {
+    color: #0E2A5B !important;   /* khi hover sẽ xanh lá thương hiệu */
+    transform: scale(1.2);
+}
+
+
+/* Cột căn giữa theo chiều ngang */
+.section .row.g-5 > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* căn giữa cột theo ngang */
+}
+
+/* Text trong các <p> căn đều */
+.section .row.g-5 > div p {
+    text-align: justify;  /* căn đều 2 bên */
+    width: 100%;           /* text chiếm hết chiều rộng cột */
+    margin: 0.5rem 0;
+}

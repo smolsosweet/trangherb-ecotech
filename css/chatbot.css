@@ -1,0 +1,316 @@
+:root {
+    --chatbot-primary: #1f8a4c;
+    --chatbot-primary-dark: #166b3b;
+    --chatbot-bg: #ffffff;
+    --chatbot-text: #1b1b1b;
+    --chatbot-muted: #6b7280;
+    --chatbot-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.chatbot {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1100;
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+.chatbot-toggle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--chatbot-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 0;
+}
+
+.chatbot-toggle:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
+}
+
+.chatbot-robot {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+    animation: robot-bob 2.2s ease-in-out infinite;
+}
+
+.robot-antenna {
+    position: absolute;
+    top: 1px;
+    left: 50%;
+    width: 2px;
+    height: 6px;
+    margin-left: -1px;
+    background: #2e6d4f;
+    border-radius: 4px;
+}
+
+.robot-antenna::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    border-radius: 50%;
+    background: #44be78;
+    box-shadow: 0 0 0 2px rgba(68, 190, 120, 0.18);
+}
+
+.robot-head {
+    position: absolute;
+    top: 7px;
+    left: 8px;
+    width: 18px;
+    height: 12px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #f5fbf7 0%, #d9f0e2 100%);
+    border: 1px solid #8ec8ab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.robot-eye {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #1f8a4c;
+    animation: robot-blink 3s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.robot-body {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 14px;
+    height: 11px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #8fd9af 0%, #53b87c 100%);
+    border: 1px solid #3d9664;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.robot-arm {
+    position: absolute;
+    top: 20px;
+    width: 3px;
+    height: 9px;
+    border-radius: 3px;
+    background: #53b87c;
+    border: 1px solid #3d9664;
+    transform-origin: top center;
+}
+
+.robot-arm-left {
+    left: 6px;
+}
+
+.robot-arm-right {
+    right: 6px;
+    animation: robot-wave 1.8s ease-in-out infinite;
+}
+
+.chatbot-panel {
+    position: absolute;
+    right: 0;
+    bottom: 72px;
+    width: 320px;
+    max-height: 520px;
+    background: var(--chatbot-bg);
+    border-radius: 18px;
+    box-shadow: var(--chatbot-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.chatbot.is-open .chatbot-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.chatbot.is-open .chatbot-toggle {
+    background: transparent;
+}
+
+.chatbot.is-open .chatbot-robot {
+    animation-duration: 1.4s;
+}
+
+.chatbot-header {
+    padding: 14px 16px;
+    background: #f0faf4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--chatbot-text);
+    border-bottom: 1px solid #e6efe9;
+}
+
+.chatbot-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+
+.chatbot-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2cbf6f;
+    box-shadow: 0 0 0 4px rgba(44, 191, 111, 0.2);
+}
+
+.chatbot-close {
+    border: none;
+    background: transparent;
+    color: var(--chatbot-muted);
+    font-size: 16px;
+}
+
+.chatbot-messages {
+    padding: 14px 16px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fcfdfc;
+}
+
+.chatbot-message {
+    max-width: 80%;
+    padding: 10px 12px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.chatbot-message.user {
+    align-self: flex-end;
+    background: var(--chatbot-primary);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.chatbot-message.bot {
+    align-self: flex-start;
+    background: #eef6f0;
+    color: var(--chatbot-text);
+    border-bottom-left-radius: 4px;
+}
+
+.chatbot-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border-top: 1px solid #e6efe9;
+    background: #ffffff;
+}
+
+.chatbot-input input {
+    flex: 1;
+    border: 1px solid #dce6df;
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 14px;
+    outline: none;
+}
+
+.chatbot-input input:focus {
+    border-color: var(--chatbot-primary);
+    box-shadow: 0 0 0 2px rgba(31, 138, 76, 0.15);
+}
+
+.chatbot-input button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: var(--chatbot-primary);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 576px) {
+    .chatbot {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .chatbot-panel {
+        width: 90vw;
+        max-height: 70vh;
+    }
+}
+
+@keyframes robot-bob {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes robot-wave {
+    0%,
+    40%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(-20deg);
+    }
+
+    30% {
+        transform: rotate(-8deg);
+    }
+}
+
+@keyframes robot-blink {
+    0%,
+    44%,
+    48%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    46% {
+        transform: scaleY(0.2);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chatbot-robot,
+    .robot-arm-right,
+    .robot-eye {
+        animation: none;
+    }
+}

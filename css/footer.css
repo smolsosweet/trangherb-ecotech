@@ -1,0 +1,21 @@
+/* Căn giữa toàn bộ text trong các cột footer */
+.footer .col-md-4 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.footer p {
+    text-align: justify;
+}
+
+.footer .justify-content-center {
+    display: inline-block;      /* khối co lại theo nội dung */
+    margin: 0 auto;             /* căn giữa trong col */
+    text-align: left;           /* text bên trong căn trái */
+}
+
+.footer .container {
+    padding-left: 150px !important;
+    padding-right: 150px !important;
+    max-width: 100% !important; /* cho rộng toàn màn hình */
+}
